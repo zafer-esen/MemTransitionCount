@@ -1,0 +1,6 @@
+->what happens in write operations
+
+->count men transitions when evicting from L3 - write back
+
+-> Delete cache hierarchy and keep only L3.
+
