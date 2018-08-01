@@ -8,3 +8,8 @@
 -> compared sha256 checksums, OK!
 
 -> trouble in mounting. Valo6221 is not in the sudoers file.  This incident will be reported. I don't think you have to be root to mount. Indications show that this happened because of explicit statement of drive (# mount -t iso9660 -o ro,exec,loop cpu2017.iso /mnt)
+
+-> Nevermind! Instead of mounting we extracted it via gui access.
+
+-> Installed at the /proj/snic2018-8-228/... directory since this is the shared one.
+
