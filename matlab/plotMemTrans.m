@@ -41,7 +41,13 @@ end
 
 cur_folder = cd(fig_folder);
 savefig(handles, figname);
-cd(cur_folder);
 
+for i=1:length(handles)
+    saveas(handles(i),[figname '_fig' num2str(i) '.png']);
+end
+
+close(handles);
+
+cd(cur_folder);
 end
 
