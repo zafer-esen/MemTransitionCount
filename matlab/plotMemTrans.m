@@ -4,6 +4,18 @@ plotsVisible = 'off'; %make this on to display the plots, not only save them
 %fig_folder = [filename '_fig']; %change this to change output folder name
 
 text = fileread(filename);
+
+mask = 'L3 miss count';
+ind = strfind(text, mask);
+lines = regexp(text(ind:ind+200),'\n','split');
+% lines = lines(1:end);
+tuples = regexp(lines,':','split');
+
+stats = [];
+for i=1:4
+    stats = [stats sprintf('%s:%s\n',tuples{i}{1},tuples{i}{2})];
+end
+
 mask = 'Number of bytes with value:';
 ind = strfind(text, mask);
 lines = regexp(text(ind:end),'\n','split');
@@ -16,7 +28,7 @@ for i=1:256
     vals(i) = str2double(tuples{i}{2});
 end
 tuples = tuples(258:end);
-for i=1:256
+for i=1:258
     reps(i) = str2double(tuples{i}{2});
 end
 tuples = tuples(257:end);
@@ -47,6 +59,10 @@ for i=1:length(handles)
 end
 
 close(handles);
+
+fid = fopen([figname '_stats.txt'],'w');
+fprintf(fid,stats);
+fclose(fid);
 
 cd(cur_folder);
 end
