@@ -19,14 +19,28 @@ for i = 1:NumTopDisplayed
     y_ind = mod(ind(i)-1, 256);
     names{i} = ['(' num2str(x_ind) ',' num2str(y_ind) ')' ' ' num2str(values(i)/totalTransitions*100,2) '%'];
 end
-names{NumTopDisplayed+1} = ['Other byte transitions '  num2str(values(NumTopDisplayed+1)/totalTransitions*100,2) '%'];
+names{NumTopDisplayed+1} = ['Other '  num2str(values(NumTopDisplayed+1)/totalTransitions*100,2) '%'];
 
 % for i=1:NumTopDisplayed+1
 %     names{i} = [names{i} ' (%' num2str(values(i)/totalTransitions*100,2) ')'];
 % end
 
 h = figure('visible', visible);
-pie(values,names);
+%pie(values,names);
+pie(values);
+legend(names,'Location','eastoutside','Orientation','vertical')
+
+hText = findobj(h,'Type','text');
+strings = get(hText,'String');
+
+textPositions_cell = get(hText,{'Position'}); 
+textPositions = cell2mat(textPositions_cell); 
+
+textPositions = textPositions*0.91;
+for i=1:length(hText)
+    hText(i).Position = textPositions(i,:) ;
+end
+
 title(titlestr);
 
 % for i = 1:65536

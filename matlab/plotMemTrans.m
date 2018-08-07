@@ -1,6 +1,6 @@
 function [ ] = plotMemTrans( filename )
 
-plotsVisible = 'off'; %make this on to display the plots, not only save them
+plotsVisible = 'on'; %make this on to display the plots, not only save them
 fig_folder = [filename '_fig']; %change this to change output folder name
 
 text = fileread(filename);
@@ -37,6 +37,9 @@ handles = [handles plot_graphs( reps, 2, 'Distribution of repeated byte values i
 
 mkdir(fig_folder);
 cd(fig_folder);
+for i=1:length(handles)
+    set(handles(i),'Position', [0,0,800,800])
+end
 savefig(handles, [filename '.fig']);
 cd ..
 
