@@ -1,7 +1,7 @@
-function [ ] = plotMemTrans( filename )
+function [ ] = plotMemTrans( figname ,filename, fig_folder )
 
-plotsVisible = 'on'; %make this on to display the plots, not only save them
-fig_folder = [filename '_fig']; %change this to change output folder name
+plotsVisible = 'off'; %make this on to display the plots, not only save them
+%fig_folder = [filename '_fig']; %change this to change output folder name
 
 text = fileread(filename);
 mask = 'Number of bytes with value:';
@@ -35,13 +35,13 @@ handles = [handles plot_distro_same( trans_distro, 4, 'Distribution of transitio
 handles = [handles plot_graphs( vals, 7, 'Distribution of byte values read/written', 'Byte value', 'Number of occurences', plotsVisible )];
 handles = [handles plot_graphs( reps, 2, 'Distribution of repeated byte values in each bus transfer - bus-wise', 'Byte value', 'Number of occurences', plotsVisible )];
 
-mkdir(fig_folder);
-cd(fig_folder);
 for i=1:length(handles)
     set(handles(i),'Position', [0,0,800,800])
 end
-savefig(handles, [filename '.fig']);
-cd ..
+
+cur_folder = cd(fig_folder);
+savefig(handles, figname);
+cd(cur_folder);
 
 end
 
