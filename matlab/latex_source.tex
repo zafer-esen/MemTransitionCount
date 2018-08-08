@@ -1,0 +1,84 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Memory Bus Bit Transition Statistics for\\%s}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Scalar Statistics}
+\begin{enumerate}
+\item %s:%s
+\item %s:%s
+\item %s:%s
+\item %s:%s
+\end{enumerate}
+
+\section{Graphs}
+The graphs give the data either \textbf{transfer-wise} or \textbf{bus-wise}. Bus-wise refers to data sent within the same transfer (i.e. as part of the same bus transfer, as defined by bus-width). Transfer-wise refers to data from different bus transfers, which cause the bit transitions to occur.
+
+\pagebreak
+\subsection{Distribution of all byte values transmitted over the bus}
+
+Figures \ref{fig_1} and \ref{fig_2} give the distribution of all transmitted bytes, either through a memory read or a memory write. The first one (pareto chart) is in terms of total number of occurrences, while at the same time showing the accumulation in the total percentage of transmitted byte values. The second one displays the absolute percentage of the most popular values transferred over the bus.
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.66]{%s_fig5.png}
+		\caption{Distribution of all bytes transmitted over the bus - pareto chart}
+		\label{fig_1}
+\end{figure}	
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{%s_fig4.png}
+		\caption{Distribution of all bytes transmitted over the bus - pie chart}
+		\label{fig_2}
+\end{figure}	
+
+\pagebreak
+\subsection{Distribution of repeated byte values in each bus transfer (bus-wise)}
+Figure \ref{fig_3} gives the number of repeated byte values in each bus transfer.
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{%s_fig6.png}
+		\caption{Distribution of repeated byte values in each bus transfer - bus-wise}
+		\label{fig_3}
+\end{figure}	
+
+\subsection{Distribution of transitions (transfer-wise)}
+\subsubsection{All transfers}
+Figure \ref{fig_4} illustrates the most popular transitions happened during a whole benchmarking. Tuples $(n,n)$ have been used as $(old\_value, new\_value)$ to show the transition.
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{%s_fig1.png}
+		\caption{Distribution of transitioning bytes - transfer-wise}
+		\label{fig_4}
+\end{figure}	
+
+\subsubsection{Only differing byte transfers (hamming distance $>$ 0)}
+Figure \ref{fig_5} illustrates the most popular transitions happened during a whole benchmarking. Tuples $(n,n)$ have been used as $(old\_value, new\_value)$ to show the transition.
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{%s_fig2.png}
+		\caption{Distribution of transitioning bytes - transfer-wise (only differing bytes)}
+		\label{fig_5}
+\end{figure}	
+
+\subsubsection{Only differing byte transfers (hamming distance $>$ 0)}
+Figure \ref{fig_6} illustrates only the non-changing byte transfers, within a whole benchmarking transfer-wise, but this time the percentages displayed are in proportion to this.
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{%s_fig3.png}
+		\caption{Distribution of transitioning bytes - transfer-wise (only same byte transitions)}
+		\label{fig_6}
+\end{figure}	
+
+\end{document}
